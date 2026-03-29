@@ -1,0 +1,125 @@
+C1sc0123
+
+
+pornhub.com 66.254.0.0
+xvideos.com 89.222.0.0
+ixxx.com    104.18.0.0
+iyottube.com 208.7.0.0
+
+
+
+config t
+NO ip access-list standard NOPORN
+ip access-list standard NOPORN
+DENY 66.254.0.0 0.0.255.255
+DENY 104.18.0.0 0.0.255.255
+DENY 89.222.0.0 0.0.255.255
+DENY 208.77.0.0 0.0.255.255
+Permit Any
+Int Gi 1
+ ip access-group NOPORN in
+end
+Goberno: allow all Porn, for freedom of expression!
+config t
+Int gi 1
+ NO ip access-group NOPORN in
+end
+
+
+config t
+NO access-list 25
+access-list 25 DENY 66.254.0.0 0.0.255.255
+access-list 25 DENY 104.18.0.0 0.0.255.255
+access-list 25 DENY 89.222.0.0 0.0.255.255
+access-list 25 DENY 208.77.0.0 0.0.255.255
+Permit Any
+Int Gi 1
+ ip access-group NOPORN in
+end
+
+access-list 25 permit Any
+Int gi 1
+ ip access-group 25 in
+end
+
+noiskul
+
+config t
+NO access-list 37
+access-list 37 DENY 184.168.0.0 0.0.255.255
+access-list 37 DENY 104.20.0.0 0.0.255.255
+access-list 37 DENY 50.6.0.0 0.0.255.255
+access-list 37 DENY 172.104.0.0 0.0.255.255
+access-list 37 permit Any
+Int gi 1
+ ip access-group 37 in
+end
+
+config t
+Int gi 1
+ ip access-group 37 in
+end
+
+
+config t
+NO ip access-list standard NOHOGGERS
+ip access-list standard NOHOGGERS
+DENY 142.251.0.0 0.0.255.255
+DENY 162.159.0.0 0.0.255.255
+DENY 15.197.0.0 0.0.255.255
+DENY 186.2.0.0 0.0.255.255
+Permit Any
+Int Gi 1
+ ip access-group NOHOGGERS in
+end
+
+config t
+Int Gi 1
+ no ip access-group NOHOGGERS in
+end
+
+
+
+
+
+@edge
+config t
+NO ip access-list extended NOCLASSMATE1
+permit ospf any any
+deny ip 10.11.0.0 0.0.255.255
+deny ip 10.12.0.0 0.0.255.255
+deny ip 10.21.0.0 0.0.255.255
+deny ip 10.92.0.0 0.0.255.255
+deny ip 10.22.0.0 0.0.255.255
+deny ip 10.31.0.0 0.0.255.255
+deny ip 10.91.0.0 0.0.255.255
+deny ip 10.32.0.0 0.0.255.255
+Int g0/0/1
+ ip access-group NOCLASSMATE1 in
+end
+
+
+config t
+ip access-list extended NOCLASSMATE1
+permit ospf any any
+permit ip 10.41.0.0 0.0.255.255 any
+permit ip 10.42.0.0 0.0.255.255 any
+permit ip 10.51.0.0 0.0.255.255 any
+permit ip 10.52.0.0 0.0.255.255 any
+permit ip 10.61.0.0 0.0.255.255 any
+permit ip 10.71.0.0 0.0.255.255 any
+deny ip any any
+Int g0/0/1
+ ip access-group NOCLASSMATE1 in
+end
+
+
+Int g0/0/1
+ n0 ip access-group NOCLASSMATE1 in
+end
+
+
+
+
+
+
