@@ -141,6 +141,35 @@ ip access-group policy1 in
 
 no ip access-group policy1 in
 
+create policy2
+bet10 ping, http, ftp
+bet11 ping, dns, https, ssh
 
+conf t
+No ip access-lis extended policy2
+ip access-list extended policy2
+permit tcp any host bet10.com eq 80
+permit tcp any host bet10.com eq 20
+permit tcp any host bet10.com eq 21
+permit icmp any host bet10.com 
+permit tcp any host bet11.com eq 53
+permit tcp any host bet11.com eq 443
+permit tcp any host bet11.com eq 22
+permit icmp any host bet11.com 
+int gi3
+ip access-group policy2 in
 
+create policy3
+bet10 ssh dns
+bet11 https, ssh, sip
 
+conf t
+No ip access-lis extended policy3
+ip access-list extended policy3
+permit tcp any host bet10.com eq 22
+permit tcp any host bet10.com eq 53
+permit tcp any host bet11.com eq 22
+permit tcp any host bet11.com eq 443
+permit tcp any host bet11.com eq 5060
+int gi3
+ip access-group policy3 in
