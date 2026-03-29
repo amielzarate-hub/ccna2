@@ -178,3 +178,48 @@ ip access-group policy3 in
 no ip access-group policy3 in
 
 
+exam scenario servers (bet10 and bet11)
+bet10
+icmp, telnet, http, sccp and port 19
+bet11
+DNS, https, sip , no ping
+
+
+conf t
+No ip access-list extended policy4
+ip access-list extended policy4
+permit icmp any host bet10.com 
+permit tcp any host bet10.com eq 23
+permit tcp any host bet10.com eq 80
+permit tcp any host bet10.com eq 2000
+permit tcp any host bet10.com eq 19
+permit tcp any host bet11.com eq 53
+permit tcp any host bet11.com eq 443
+permit tcp any host bet11.com eq 5060
+int gi3
+ip access-group policy4 in
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
