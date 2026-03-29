@@ -173,3 +173,8 @@ permit tcp any host bet11.com eq 443
 permit tcp any host bet11.com eq 5060
 int gi3
 ip access-group policy3 in
+
+#remove config (no)
+no ip access-group policy3 in
+
+
