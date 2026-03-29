@@ -120,6 +120,27 @@ end
 
 
 
+conf t
+No ip access-lis extended policy1
+ip access-list extended policy1
+permit tcp any host bet10.com eq 80
+permit tcp any host bet10.com eq 443
+permit icmp any host bet10.com 
+permit udp any host bet11.com eq 5060
+permit udp any host bet11.com eq 2000
+int gi3
+ip access-group policy1 in
+
+conf t
+No ip access-lis extended policy1
+ip access-list extended policy1
+permit tcp any host bet11.com eq 5060
+permit tcp any host bet11.com eq 2000
+int gi3
+ip access-group policy1 in
+
+no ip access-group policy1 in
+
 
 
 
